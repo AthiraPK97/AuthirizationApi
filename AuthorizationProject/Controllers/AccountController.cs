@@ -36,6 +36,20 @@ namespace AuthorizationProject.Controllers
 
                 await HttpContext.SignInAsync("MyCookieAuth", principal);
 
+                return RedirectToAction("AdminPanel", "Account");
+            }
+            else if(username=="user" && password=="user123")
+            {
+                var Claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "User")
+                };
+                var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync("MyCookieAuth", principal);
+
                 return RedirectToAction("Dashboard", "Account");
             }
             ViewBag.Message = "Invalid username or password.";
@@ -52,7 +66,7 @@ namespace AuthorizationProject.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles ="User")]
         public IActionResult Dashboard()
         {
             if (User.IsInRole("Admin"))
