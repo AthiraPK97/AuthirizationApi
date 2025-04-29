@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <h2> DashBoard</h2>
+        @if (ViewBag.IsAdmin)
+        {
+    <a asp-controller="Account" asp-action="AdminPanel">Go to Admin Panel</a>
+        }
+        else { 
+            <p> Welcome to dashboard</p>
+        }
+        <a asp-controller="Account" asp-action="Login">LogOut</a>
+    </div>
+    </div>
+</body>
+</html>
