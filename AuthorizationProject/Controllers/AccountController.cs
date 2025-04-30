@@ -45,7 +45,7 @@ namespace AuthorizationProject.Controllers
                             var Claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Role, "admin")
+                    new Claim(ClaimTypes.Role, "Admin")
                 };
                             var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
                             var principal = new ClaimsPrincipal(identity);
