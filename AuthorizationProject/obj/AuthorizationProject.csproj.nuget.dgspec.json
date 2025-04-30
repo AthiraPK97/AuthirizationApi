@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj": {}
+    "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj": {}
   },
   "projects": {
-    "D:\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj": {
+    "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
+        "projectUniqueName": "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
         "projectName": "AuthorizationProject",
-        "projectPath": "D:\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
+        "projectPath": "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
         "packagesPath": "C:\\Users\\PROGRAMMER2\\.nuget\\packages\\",
-        "outputPath": "D:\\AuthorizationProject\\AuthorizationProject\\obj\\",
+        "outputPath": "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

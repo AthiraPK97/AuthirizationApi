@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "67b31CdcqKeOIp4y6l1G+u6bl7lfqCd3/wqlsrx5tT46Tn96ZmlxyKAfOz1oNGZqtBI04Jvk8jR9F1+GO/7Sqw==",
+  "dgSpecHash": "dQLxUxse1NdpNw21mojRD9YmdFiVfkDcgqzPgIf+usE+zmxDUYMGM7fB7Kdu2nxMydWZjOpZjCBlSHPrpVQiDg==",
   "success": true,
-  "projectFilePath": "D:\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
+  "projectFilePath": "D:\\Athira\\AuthorizationProject\\AuthorizationProject\\AuthorizationProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PROGRAMMER2\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
     "C:\\Users\\PROGRAMMER2\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",

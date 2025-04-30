@@ -35,10 +35,10 @@ namespace AuthorizationProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [Authorize]
+        [Authorize(Roles ="user")]
         public IActionResult Dashboard()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("admin"))
             {
                 ViewBag.IsAdmin = true;
             }

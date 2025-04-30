@@ -17,6 +17,9 @@ namespace AuthorizationProject.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly string csvPath = "Users/users.csv";
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -24,33 +27,50 @@ namespace AuthorizationProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            if (username == "admin" && password == "test123")
+            var lines = System.IO.File.ReadAllLines(csvPath).Skip(1); // skip header
+
+            foreach (var line in lines)
             {
-                var Claims = new List<Claim>
+                var parts = line.Split(',');
+                if (parts.Length == 3)
+                {
+                    var fileUsername = parts[0].Trim();
+                    var filePassword = parts[1].Trim();
+                    var role = parts[2].Trim();
+
+                    if (username == fileUsername && password == filePassword)
+                    {
+                        if (role=="admin")
+                        {
+                            var Claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Role, "Admin")
+                    new Claim(ClaimTypes.Role, "admin")
                 };
-                var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
-                var principal = new ClaimsPrincipal(identity);
+                            var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
+                            var principal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", principal);
+                            await HttpContext.SignInAsync("MyCookieAuth", principal);
 
-                return RedirectToAction("AdminPanel", "Account");
-            }
-            else if(username=="user" && password=="user123")
-            {
-                var Claims = new List<Claim>
+                            return RedirectToAction("AdminPanel", "Account");
+                        }
+
+                        else 
+                        {
+                            var Claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, "User")
                 };
-                var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
-                var principal = new ClaimsPrincipal(identity);
+                            var identity = new ClaimsIdentity(Claims, "MyCookieAuth");
+                            var principal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", principal);
+                            await HttpContext.SignInAsync("MyCookieAuth", principal);
 
-                return RedirectToAction("Dashboard", "Account");
+                            return RedirectToAction("Dashboard", "Account");
+                        }
+                    }
+                }
             }
             ViewBag.Message = "Invalid username or password.";
             return View();
@@ -84,5 +104,32 @@ namespace AuthorizationProject.Controllers
         {
             return View();
         }
+
+        private UserModel? GetUserFromCsv(string username, string password)
+        {
+            if (!System.IO.File.Exists(csvPath))
+                return null;
+
+            var lines = System.IO.File.ReadAllLines(csvPath);
+            foreach (var line in lines.Skip(1)) // Skip header
+            {
+                var parts = line.Split(',');
+                if (parts.Length == 3 &&
+                    parts[0] == username &&
+                    parts[1] == password)
+                {
+                    return new UserModel { Username = parts[0], Password = parts[1], Role = parts[2] };
+                }
+            }
+            return null;
+        }
+
+        private class UserModel
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+            public string Role { get; set; }
+        }
     }
 }
+
